@@ -19,16 +19,28 @@ function verifyToken(req, res, next) {
     if (err) {
       return res.status(403).json({ message: 'Invalid or expired token' });
     }
+<<<<<<< HEAD
     req.user = user; // Attach payload { id, name, email, role, permissions }
+=======
+    req.user = user; // Attach payload { id, name, email, role }
+>>>>>>> 8190d402cf8644d48aa3b3d53fd0ffbb0b9e07e6
     next();
   });
 }
 
+<<<<<<< HEAD
 // Guard middleware for admin-only or seller-only operations
 // Super admin, admin, and seller all have dashboard privileges
 function requireAdmin(req, res, next) {
   if (!req.user || (req.user.role !== 'admin' && req.user.role !== 'super_admin' && req.user.role !== 'seller')) {
     return res.status(403).json({ message: 'Access denied. Authorized roles only.' });
+=======
+// Guard middleware for admin-only routes
+// Super admin also has admin privileges
+function requireAdmin(req, res, next) {
+  if (!req.user || (req.user.role !== 'admin' && req.user.role !== 'super_admin')) {
+    return res.status(403).json({ message: 'Access denied. Admins only.' });
+>>>>>>> 8190d402cf8644d48aa3b3d53fd0ffbb0b9e07e6
   }
   next();
 }
