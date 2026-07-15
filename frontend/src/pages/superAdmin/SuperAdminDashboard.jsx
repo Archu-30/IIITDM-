@@ -2,6 +2,19 @@ import React, { useState, useEffect } from 'react';
 import SuperAdminSidebar from '../../components/SuperAdminSidebar';
 import api from '../../api/axios';
 import { toastError } from '../../components/Toast';
+import { IllustrationWrapper } from '../../components/illustrations/IllustrationWrapper';
+import { 
+  FuturisticTowers, 
+  PremiumShield, 
+  ConnectedBuildings, 
+  LogisticsWarehouse, 
+  CrystalFolders, 
+  CrystalVault, 
+  ConnectedTeam, 
+  CrystalWallet, 
+  FloatingTicket 
+} from '../../components/illustrations/KpiIllustrations';
+import { KPI_ICONS } from '../../components/IconMapping';
 import { 
   Building2, 
   ShieldAlert, 
@@ -114,75 +127,93 @@ export default function SuperAdminDashboard({ user, onLogout }) {
         <div className="p-8 space-y-8 max-w-7xl mx-auto">
           {/* 9 KPI Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 flex items-center space-x-3">
-              <div className="p-3 bg-blue-50 text-blue-600 rounded-xl"><Building2 size={20} /></div>
+            <div className="bg-white rounded-[24px] p-5 shadow-sm border border-slate-100/80 flex items-center space-x-4 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={KPI_ICONS.organizations.gradient}>
+                <FuturisticTowers />
+              </IllustrationWrapper>
               <div>
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Organizations</p>
-                <h3 className="text-xl font-bold text-slate-800 mt-0.5">{stats.totalOrganizations}</h3>
+                <h3 className="text-2xl font-black text-slate-800 mt-0.5 tracking-tight">{stats.totalOrganizations}</h3>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 flex items-center space-x-3">
-              <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl"><ShieldAlert size={20} /></div>
+            <div className="bg-white rounded-[24px] p-5 shadow-sm border border-slate-100/80 flex items-center space-x-4 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={KPI_ICONS.admins.gradient}>
+                <PremiumShield />
+              </IllustrationWrapper>
               <div>
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Admins</p>
-                <h3 className="text-xl font-bold text-slate-800 mt-0.5">{stats.totalAdmins}</h3>
+                <h3 className="text-2xl font-black text-slate-800 mt-0.5 tracking-tight">{stats.totalAdmins}</h3>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 flex items-center space-x-3">
-              <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl"><Users size={20} /></div>
+            <div className="bg-white rounded-[24px] p-5 shadow-sm border border-slate-100/80 flex items-center space-x-4 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={KPI_ICONS.customers.gradient}>
+                <ConnectedBuildings />
+              </IllustrationWrapper>
               <div>
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Tenants</p>
-                <h3 className="text-xl font-bold text-slate-800 mt-0.5">{stats.totalTenants}</h3>
+                <h3 className="text-2xl font-black text-slate-800 mt-0.5 tracking-tight">{stats.totalTenants}</h3>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 flex items-center space-x-3">
-              <div className="p-3 bg-purple-50 text-purple-600 rounded-xl"><Warehouse size={20} /></div>
+            <div className="bg-white rounded-[24px] p-5 shadow-sm border border-slate-100/80 flex items-center space-x-4 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={KPI_ICONS.warehouse.gradient}>
+                <LogisticsWarehouse />
+              </IllustrationWrapper>
               <div>
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Warehouses</p>
-                <h3 className="text-xl font-bold text-slate-800 mt-0.5">{stats.totalWarehouses}</h3>
+                <h3 className="text-2xl font-black text-slate-800 mt-0.5 tracking-tight">{stats.totalWarehouses}</h3>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 flex items-center space-x-3">
-              <div className="p-3 bg-pink-50 text-pink-600 rounded-xl"><FileText size={20} /></div>
+            <div className="bg-white rounded-[24px] p-5 shadow-sm border border-slate-100/80 flex items-center space-x-4 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={KPI_ICONS.lease.gradient}>
+                <CrystalFolders />
+              </IllustrationWrapper>
               <div>
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Active Leases</p>
-                <h3 className="text-xl font-bold text-slate-800 mt-0.5">{stats.activeLeases}</h3>
+                <h3 className="text-2xl font-black text-slate-800 mt-0.5 tracking-tight">{stats.activeLeases}</h3>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 flex items-center space-x-3">
-              <div className="p-3 bg-amber-50 text-amber-600 rounded-xl"><CreditCard size={20} /></div>
+            <div className="bg-white rounded-[24px] p-5 shadow-sm border border-slate-100/80 flex items-center space-x-4 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={KPI_ICONS.payments.gradient}>
+                <CrystalVault />
+              </IllustrationWrapper>
               <div>
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Total Revenue</p>
-                <h3 className="text-lg font-bold text-slate-800 mt-0.5">{formatPrice(stats.totalRevenue)}</h3>
+                <h3 className="text-xl font-black text-slate-800 mt-0.5 tracking-tight">{formatPrice(stats.totalRevenue)}</h3>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 flex items-center space-x-3">
-              <div className="p-3 bg-teal-50 text-teal-600 rounded-xl"><UserCheck size={20} /></div>
+            <div className="bg-white rounded-[24px] p-5 shadow-sm border border-slate-100/80 flex items-center space-x-4 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={KPI_ICONS.customers.gradient}>
+                <ConnectedTeam />
+              </IllustrationWrapper>
               <div>
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Total Staff</p>
-                <h3 className="text-xl font-bold text-slate-800 mt-0.5">{stats.totalStaff}</h3>
+                <h3 className="text-2xl font-black text-slate-800 mt-0.5 tracking-tight">{stats.totalStaff}</h3>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 flex items-center space-x-3">
-              <div className="p-3 bg-orange-50 text-orange-600 rounded-xl"><AlertTriangle size={20} /></div>
+            <div className="bg-white rounded-[24px] p-5 shadow-sm border border-slate-100/80 flex items-center space-x-4 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={['#f59e0b', '#f97316']}>
+                <CrystalWallet />
+              </IllustrationWrapper>
               <div>
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Dues Pending</p>
-                <h3 className="text-xl font-bold text-slate-800 mt-0.5">{stats.pendingPayments}</h3>
+                <h3 className="text-2xl font-black text-slate-800 mt-0.5 tracking-tight">{stats.pendingPayments}</h3>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 flex items-center space-x-3">
-              <div className="p-3 bg-rose-50 text-rose-600 rounded-xl"><Ticket size={20} /></div>
+            <div className="bg-white rounded-[24px] p-5 shadow-sm border border-slate-100/80 flex items-center space-x-4 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={['#ef4444', '#f43f5e']}>
+                <FloatingTicket />
+              </IllustrationWrapper>
               <div>
                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Open Tickets</p>
-                <h3 className="text-xl font-bold text-rose-600 mt-0.5">{stats.openTickets}</h3>
+                <h3 className="text-2xl font-black text-rose-600 mt-0.5 tracking-tight">{stats.openTickets}</h3>
               </div>
             </div>
           </div>

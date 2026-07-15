@@ -42,18 +42,30 @@ export default function Navbar({ user, onLogout }) {
   return (
     <nav className="sticky top-0 z-40 bg-slate-900 backdrop-blur-2xl border-b border-white/10 shadow-lg shadow-black/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-[72px]">
 
           {/* Left Side */}
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center gap-[12px]">
-              <img src="/rentalyze-logo.jpg" alt="Rentalyze Logo" className="h-[44px] w-auto max-w-[44px] object-contain mix-blend-screen" />
-              <span className="text-[28px] font-[700] tracking-[0.5px] text-white whitespace-nowrap">RENTALYZE</span>
+          <div className="flex items-center h-full">
+            {/* Branding Section */}
+            <div className="flex items-center group cursor-pointer" style={{ minWidth: '220px', paddingLeft: '24px' }}>
+              <img 
+                src="/rentalyze-logo.jpg" 
+                alt="Rentalyze Logo" 
+                className="h-[42px] sm:h-[48px] w-auto object-contain mix-blend-screen group-hover:scale-[1.03] transition-transform duration-300"
+              />
+              <span className="text-[20px] sm:text-[24px] font-[800] tracking-[0.8px] text-white whitespace-nowrap ml-[14px] group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] transition-all duration-300">
+                RENTALYZE
+              </span>
             </div>
+
+            {/* Vertical Divider (only visible if there are nav items, e.g. for customers) */}
+            {isCustomer && (
+              <div className="h-[70%] w-[1px] ml-[24px] mr-[24px]" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}></div>
+            )}
 
             {/* Navigation tabs — only shown for customers */}
             {isCustomer && (
-              <div className="flex items-center space-x-1">
+              <div className="flex items-center space-x-2">
                 <NavLink
                   to="/customer/inventory"
                   className={({ isActive }) =>

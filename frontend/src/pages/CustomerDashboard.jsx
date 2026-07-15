@@ -4,7 +4,9 @@ import StockCard from '../components/StockCard';
 import BuyNowModal from '../components/BuyNowModal';
 import api from '../api/axios';
 import { toastError } from '../components/Toast';
-import { Search, SlidersHorizontal, Calendar, FileText, ChevronLeft, ChevronRight, X, AlertCircle } from 'lucide-react';
+import { IllustrationWrapper } from '../components/illustrations/IllustrationWrapper';
+import { FloatingPackage, CrystalFolders, AmberWarningContainer } from '../components/illustrations/KpiIllustrations';
+import { Search, SlidersHorizontal, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 export default function CustomerDashboard({ user, onLogout }) {
   const [items, setItems] = useState([]);
@@ -115,33 +117,33 @@ export default function CustomerDashboard({ user, onLogout }) {
 
         {/* Header Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center space-x-4">
-            <div className="p-3 bg-green-50 text-green-600 rounded-xl">
-              <Calendar size={24} />
-            </div>
+          <div className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100 flex items-center space-x-5 hover:shadow-md transition duration-300">
+            <IllustrationWrapper gradient={['#10b981', '#06b6d4']}>
+              <FloatingPackage />
+            </IllustrationWrapper>
             <div>
-              <p className="text-xs font-semibold text-slate-400">Total Items Available</p>
-              <h3 className="text-2xl font-extrabold text-slate-800 mt-1">{availableCount}</h3>
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Items Available</p>
+              <h3 className="text-3xl font-black text-slate-800 mt-1 tracking-tight">{availableCount}</h3>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center space-x-4">
-            <div className="p-3 bg-blue-50 text-primary rounded-xl">
-              <FileText size={24} />
-            </div>
+          <div className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100 flex items-center space-x-5 hover:shadow-md transition duration-300">
+            <IllustrationWrapper gradient={['#8b5cf6', '#3b82f6']}>
+              <CrystalFolders />
+            </IllustrationWrapper>
             <div>
-              <p className="text-xs font-semibold text-slate-400">Product Categories</p>
-              <h3 className="text-2xl font-extrabold text-slate-800 mt-1">{totalCategories}</h3>
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Product Categories</p>
+              <h3 className="text-3xl font-black text-slate-800 mt-1 tracking-tight">{totalCategories}</h3>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center space-x-4">
-            <div className="p-3 bg-amber-50 text-amber-600 rounded-xl">
-              <AlertCircle size={24} />
-            </div>
+          <div className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100 flex items-center space-x-5 hover:shadow-md transition duration-300">
+            <IllustrationWrapper gradient={['#f59e0b', '#f97316']}>
+              <AmberWarningContainer />
+            </IllustrationWrapper>
             <div>
-              <p className="text-xs font-semibold text-slate-400">Low Stock Items</p>
-              <h3 className="text-2xl font-extrabold text-slate-800 mt-1">{lowStockCount}</h3>
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Low Stock Items</p>
+              <h3 className="text-3xl font-black text-slate-800 mt-1 tracking-tight">{lowStockCount}</h3>
             </div>
           </div>
         </div>

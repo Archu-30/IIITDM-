@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { PremiumIcon } from './PremiumIcon';
+import { KPI_ICONS } from './IconMapping';
 import { 
   LayoutDashboard, 
   Package, 
@@ -24,12 +26,12 @@ export default function Sidebar({ user, onLogout }) {
   };
 
   const navItems = [
-    { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
-    { name: 'Inventory', path: '/admin/inventory', icon: Package },
-    { name: 'Orders', path: '/admin/orders', icon: ShoppingBag },
-    { name: 'Transactions', path: '/admin/transactions', icon: ArrowLeftRight },
-    { name: 'Lease Information', path: '/admin/lease-information', icon: FileText },
-    { name: 'Notifications', path: '/admin/notifications', icon: Bell },
+    { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard, gradient: ['#3b82f6', '#06b6d4'] }, // Default Azure
+    { name: 'Inventory', path: '/admin/inventory', icon: Package, gradient: KPI_ICONS.inventory.gradient },
+    { name: 'Orders', path: '/admin/orders', icon: ShoppingBag, gradient: KPI_ICONS.orders.gradient },
+    { name: 'Transactions', path: '/admin/transactions', icon: ArrowLeftRight, gradient: KPI_ICONS.transactions.gradient },
+    { name: 'Lease Information', path: '/admin/lease-information', icon: FileText, gradient: KPI_ICONS.lease.gradient },
+    { name: 'Notifications', path: '/admin/notifications', icon: Bell, gradient: KPI_ICONS.notifications.gradient },
   ];
 
   return (
@@ -40,29 +42,45 @@ export default function Sidebar({ user, onLogout }) {
       className="w-60 bg-sidebar-bg backdrop-blur-2xl flex flex-col border-r border-white/10 h-screen fixed left-0 top-0 z-30 shadow-[0_0_40px_rgba(0,0,0,0.5)]"
     >
       {/* Brand Header */}
-      <div className="h-16 flex items-center px-6 border-b border-white/10 gap-[12px]">
-        <img src="/rentalyze-logo.jpg" alt="Rentalyze Logo" className="h-[44px] w-auto max-w-[44px] object-contain mix-blend-screen" />
-        <span className="text-[28px] font-[700] tracking-[0.5px] text-white whitespace-nowrap">RENTALYZE</span>
+      <div className="h-[72px] flex items-center border-b border-white/10 w-full shrink-0">
+        <div className="flex items-center group cursor-pointer w-full" style={{ minWidth: '220px', paddingLeft: '24px' }}>
+          <img 
+            src="/rentalyze-logo.jpg" 
+            alt="Rentalyze Logo" 
+            className="h-[42px] sm:h-[48px] w-auto object-contain mix-blend-screen group-hover:scale-[1.03] transition-transform duration-300"
+          />
+          <span className="text-[20px] sm:text-[24px] font-[800] tracking-[0.8px] text-white whitespace-nowrap ml-[14px] group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] transition-all duration-300">
+            RENTALYZE
+          </span>
+        </div>
       </div>
 
       {/* Navigation Links */}
       <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
         {navItems.map((item) => {
-          const Icon = item.icon;
           return (
             <NavLink
               key={item.name}
               to={item.path}
               className={({ isActive }) =>
-                `flex items-center space-x-3 px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-200 cursor-pointer ${
+                `flex items-center space-x-4 px-3 py-2 rounded-2xl text-sm font-medium transition-all duration-300 cursor-pointer ${
                   isActive
-                    ? 'bg-primary text-white shadow-lg shadow-primary/30 ring-1 ring-white/10'
+                    ? 'bg-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] ring-1 ring-white/20'
                     : 'text-sidebar-text hover:text-white hover:bg-white/5'
                 }`
               }
             >
-              <Icon size={18} />
-              <span>{item.name}</span>
+              {({ isActive }) => (
+                <>
+                  <PremiumIcon 
+                    icon={item.icon} 
+                    size="sidebar" 
+                    isActive={isActive} 
+                    gradient={item.gradient} 
+                  />
+                  <span>{item.name}</span>
+                </>
+              )}
             </NavLink>
           );
         })}

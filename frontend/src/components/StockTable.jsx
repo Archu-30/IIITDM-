@@ -1,5 +1,6 @@
 import React from 'react';
 import StatusBadge from './StatusBadge';
+import { PremiumIcon } from './PremiumIcon';
 import { Edit, RefreshCw, Trash2 } from 'lucide-react';
 
 export default function StockTable({ 
@@ -106,27 +107,27 @@ export default function StockTable({
 
                 {/* Actions */}
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <div className="flex items-center justify-end space-x-2">
+                  <div className="flex items-center justify-end space-x-3">
                     <button
                       onClick={() => onRestock(item)}
                       title="Restock Item"
-                      className="p-1.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-50 border border-transparent hover:border-slate-150 transition cursor-pointer"
+                      className="transition cursor-pointer border-0 p-0 bg-transparent"
                     >
-                      <RefreshCw size={16} />
+                      <PremiumIcon icon={RefreshCw} size="small" gradient={['#3b82f6', '#0ea5e9']} />
                     </button>
                     <button
                       onClick={() => onEdit(item)}
                       title="Edit Item"
-                      className="p-1.5 rounded-lg text-slate-500 hover:text-amber-600 hover:bg-slate-50 border border-transparent hover:border-slate-150 transition cursor-pointer"
+                      className="transition cursor-pointer border-0 p-0 bg-transparent"
                     >
-                      <Edit size={16} />
+                      <PremiumIcon icon={Edit} size="small" gradient={['#f59e0b', '#f97316']} />
                     </button>
                     <button
                       onClick={() => onDelete(item)}
                       title="Delete Item"
-                      className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 border border-transparent hover:border-rose-100 transition cursor-pointer"
+                      className="transition cursor-pointer border-0 p-0 bg-transparent"
                     >
-                      <Trash2 size={16} />
+                      <PremiumIcon icon={Trash2} size="small" gradient={['#ef4444', '#f43f5e']} />
                     </button>
                   </div>
                 </td>

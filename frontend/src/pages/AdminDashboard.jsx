@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import Sidebar from '../components/Sidebar';
 import api from '../api/axios';
 import { toastError } from '../components/Toast';
+import { IllustrationWrapper } from '../components/illustrations/IllustrationWrapper';
+import { InventoryCrates, CrystalCoin, EmptyCrate, LowStockGauge } from '../components/illustrations/KpiIllustrations';
 import { 
   Package, 
   TrendingUp, 
@@ -179,46 +181,46 @@ export default function AdminDashboard({ user, onLogout }) {
           >
             
             {/* Stat Card 1 */}
-            <motion.div variants={itemVariants} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100/80 flex items-center space-x-4">
-              <div className="p-3 bg-blue-50 text-primary rounded-xl">
-                <Package size={24} />
-              </div>
+            <motion.div variants={itemVariants} className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100/80 flex items-center space-x-5 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={['#6366f1', '#a855f7']}>
+                <InventoryCrates />
+              </IllustrationWrapper>
               <div>
-                <p className="text-xs font-semibold text-slate-400">Total Stock Items</p>
-                <h3 className="text-2xl font-extrabold text-slate-800 mt-1">{stats.totalItems}</h3>
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Stock Items</p>
+                <h3 className="text-3xl font-black text-slate-800 mt-1 tracking-tight">{stats.totalItems}</h3>
               </div>
             </motion.div>
 
             {/* Stat Card 2 */}
-            <motion.div variants={itemVariants} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100/80 flex items-center space-x-4">
-              <div className="p-3 bg-green-50 text-green-600 rounded-xl">
-                <TrendingUp size={24} />
-              </div>
+            <motion.div variants={itemVariants} className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100/80 flex items-center space-x-5 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={['#10b981', '#06b6d4']}>
+                <CrystalCoin />
+              </IllustrationWrapper>
               <div>
-                <p className="text-xs font-semibold text-slate-400">Total Inventory Value</p>
-                <h3 className="text-2xl font-extrabold text-slate-800 mt-1">{formatPrice(stats.totalValue)}</h3>
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Inventory Value</p>
+                <h3 className="text-3xl font-black text-slate-800 mt-1 tracking-tight">{formatPrice(stats.totalValue)}</h3>
               </div>
             </motion.div>
 
             {/* Stat Card 3 */}
-            <motion.div variants={itemVariants} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100/80 flex items-center space-x-4">
-              <div className="p-3 bg-rose-50 text-rose-600 rounded-xl">
-                <AlertCircle size={24} />
-              </div>
+            <motion.div variants={itemVariants} className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100/80 flex items-center space-x-5 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={['#ef4444', '#f43f5e']}>
+                <EmptyCrate />
+              </IllustrationWrapper>
               <div>
-                <p className="text-xs font-semibold text-slate-400">Out of Stock Items</p>
-                <h3 className="text-2xl font-extrabold text-rose-600 mt-1">{stats.outOfStockItems}</h3>
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Out of Stock Items</p>
+                <h3 className="text-3xl font-black text-rose-600 mt-1 tracking-tight">{stats.outOfStockItems}</h3>
               </div>
             </motion.div>
 
             {/* Stat Card 4 */}
-            <motion.div variants={itemVariants} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100/80 flex items-center space-x-4">
-              <div className="p-3 bg-amber-50 text-amber-600 rounded-xl">
-                <AlertTriangle size={24} />
-              </div>
+            <motion.div variants={itemVariants} className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100/80 flex items-center space-x-5 hover:shadow-md transition duration-300">
+              <IllustrationWrapper gradient={['#f59e0b', '#f97316']}>
+                <LowStockGauge />
+              </IllustrationWrapper>
               <div>
-                <p className="text-xs font-semibold text-slate-400">Low Stock Items</p>
-                <h3 className="text-2xl font-extrabold text-amber-600 mt-1">{stats.lowStockItems}</h3>
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Low Stock Items</p>
+                <h3 className="text-3xl font-black text-amber-600 mt-1 tracking-tight">{stats.lowStockItems}</h3>
               </div>
             </motion.div>
           </motion.div>

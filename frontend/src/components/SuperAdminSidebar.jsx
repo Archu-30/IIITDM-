@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { PremiumIcon } from './PremiumIcon';
+import { KPI_ICONS } from './IconMapping';
 import { 
   LayoutDashboard, 
   Building2, 
@@ -12,7 +14,7 @@ import {
   FileText, 
   Ticket, 
   History, 
-  Sliders, 
+  Settings, 
   Sparkles, 
   Bell, 
   User,
@@ -30,48 +32,64 @@ export default function SuperAdminSidebar({ user, onLogout }) {
   };
 
   const navItems = [
-    { name: 'Dashboard', path: '/super-admin/dashboard', icon: LayoutDashboard },
-    { name: 'Organizations', path: '/super-admin/organizations', icon: Building2 },
-    { name: 'Admins', path: '/super-admin/admins', icon: ShieldAlert },
-    { name: 'Staff Management', path: '/super-admin/staff', icon: UserCheck },
+    { name: 'Dashboard', path: '/super-admin/dashboard', icon: LayoutDashboard, gradient: ['#3b82f6', '#06b6d4'] },
+    { name: 'Organizations', path: '/super-admin/organizations', icon: Building2, gradient: KPI_ICONS.organizations.gradient },
+    { name: 'Admins', path: '/super-admin/admins', icon: ShieldAlert, gradient: KPI_ICONS.admins.gradient },
+    { name: 'Staff Management', path: '/super-admin/staff', icon: UserCheck, gradient: KPI_ICONS.customers.gradient },
 
-    { name: 'Warehouses', path: '/super-admin/warehouses', icon: Warehouse },
-    { name: 'Payments', path: '/super-admin/payments', icon: CreditCard },
-    { name: 'Lease Management', path: '/super-admin/leases', icon: FileText },
-    { name: 'Ticket Management', path: '/super-admin/tickets', icon: Ticket },
-    { name: 'Audit Logs', path: '/super-admin/audit-logs', icon: History },
-    { name: 'Configuration', path: '/super-admin/config', icon: Sliders },
-    { name: 'Subscriptions', path: '/super-admin/subscriptions', icon: Sparkles },
-    { name: 'Notifications', path: '/super-admin/notifications', icon: Bell },
-    { name: 'Profile', path: '/super-admin/profile', icon: User },
+    { name: 'Warehouses', path: '/super-admin/warehouses', icon: Warehouse, gradient: KPI_ICONS.warehouse.gradient },
+    { name: 'Payments', path: '/super-admin/payments', icon: CreditCard, gradient: KPI_ICONS.payments.gradient },
+    { name: 'Lease Management', path: '/super-admin/leases', icon: FileText, gradient: KPI_ICONS.lease.gradient },
+    { name: 'Ticket Management', path: '/super-admin/tickets', icon: Ticket, gradient: ['#ef4444', '#f43f5e'] },
+    { name: 'Audit Logs', path: '/super-admin/audit-logs', icon: History, gradient: KPI_ICONS.audit.gradient },
+    { name: 'Configuration', path: '/super-admin/config', icon: Settings, gradient: KPI_ICONS.configuration.gradient },
+    { name: 'Subscriptions', path: '/super-admin/subscriptions', icon: Sparkles, gradient: ['#f59e0b', '#f97316'] },
+    { name: 'Notifications', path: '/super-admin/notifications', icon: Bell, gradient: KPI_ICONS.notifications.gradient },
+    { name: 'Profile', path: '/super-admin/profile', icon: User, gradient: ['#10b981', '#3b82f6'] },
   ];
 
   return (
     <aside className="w-60 bg-sidebar-bg backdrop-blur-2xl flex flex-col border-r border-white/10 h-screen fixed left-0 top-0 z-30 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
       {/* Brand Header */}
-      <div className="h-16 flex items-center px-6 border-b border-white/10 gap-[12px] flex-shrink-0">
-        <img src="/rentalyze-logo.jpg" alt="Rentalyze Logo" className="h-[44px] w-auto max-w-[44px] object-contain mix-blend-screen" />
-        <span className="text-[28px] font-[700] tracking-[0.5px] text-white whitespace-nowrap">RENTALYZE</span>
+      <div className="h-[72px] flex items-center border-b border-white/10 w-full shrink-0">
+        <div className="flex items-center group cursor-pointer w-full" style={{ minWidth: '220px', paddingLeft: '24px' }}>
+          <img 
+            src="/rentalyze-logo.jpg" 
+            alt="Rentalyze Logo" 
+            className="h-[42px] sm:h-[48px] w-auto object-contain mix-blend-screen group-hover:scale-[1.03] transition-transform duration-300"
+          />
+          <span className="text-[20px] sm:text-[24px] font-[800] tracking-[0.8px] text-white whitespace-nowrap ml-[14px] group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] transition-all duration-300">
+            RENTALYZE
+          </span>
+        </div>
       </div>
 
       {/* Navigation Links */}
       <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
-          const Icon = item.icon;
           return (
             <NavLink
               key={item.name}
               to={item.path}
               className={({ isActive }) =>
-                `flex items-center space-x-3 px-4 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 cursor-pointer ${
+                `flex items-center space-x-4 px-3 py-2 rounded-2xl text-sm font-medium transition-all duration-300 cursor-pointer ${
                   isActive
-                    ? 'bg-primary text-white shadow-lg shadow-primary/30 ring-1 ring-white/10'
+                    ? 'bg-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] ring-1 ring-white/20'
                     : 'text-sidebar-text hover:text-white hover:bg-white/5'
                 }`
               }
             >
-              <Icon size={18} />
-              <span>{item.name}</span>
+              {({ isActive }) => (
+                <>
+                  <PremiumIcon 
+                    icon={item.icon} 
+                    size="sidebar" 
+                    isActive={isActive} 
+                    gradient={item.gradient} 
+                  />
+                  <span>{item.name}</span>
+                </>
+              )}
             </NavLink>
           );
         })}
